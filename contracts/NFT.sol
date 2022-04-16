@@ -13,7 +13,7 @@ contract NFT is ERC721A {
     using Strings for uint256;
 
     mapping (address => bool) private _contractOwners;
-    string private _tokenBaseURI = '';
+    string private _tokenBaseURI = 'https://easter.infura-ipfs.io/ipfs/QmTouQUHudZzdx4GLgqQRsAEraxDNQY9ASep7nJ6CjFPcC/';
     uint256 public maxSupply = 25;
 
     constructor() ERC721A("EasterNFT", "EASTERNFT") {
@@ -23,14 +23,6 @@ contract NFT is ERC721A {
         _contractOwners[_msgSender()] = true;
     }
 
-    function mintToAddress(address _address) external onlyContractOwner {
-        if (!(_totalMinted() < maxSupply)) revert MintFinished({
-            error: "No more supply to mint"
-        });
-
-        _safeMint(_address, 1);
-    }
-
     function isContractOwner(address _address) public view returns (bool) {
         return _contractOwners[_address];
     }
@@ -38,6 +30,14 @@ contract NFT is ERC721A {
     modifier onlyContractOwner() {
         require(_contractOwners[_msgSender()], "Ownable: caller is not the contract owner");
         _;
+    }
+
+    function mintToAddress(address _address) external onlyContractOwner {
+        if (!(_totalMinted() < maxSupply)) revert MintFinished({
+            error: "No more supply to mint"
+        });
+
+        _safeMint(_address, 1);
     }
 
     function setBaseURI(string memory baseURI) public onlyContractOwner {
