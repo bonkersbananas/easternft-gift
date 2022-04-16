@@ -16,7 +16,7 @@ contract NFT is ERC721A {
     string private _tokenBaseURI = 'https://easter.infura-ipfs.io/ipfs/QmTouQUHudZzdx4GLgqQRsAEraxDNQY9ASep7nJ6CjFPcC/';
     uint256 public maxSupply = 25;
 
-    constructor() ERC721A("EasterNFT", "EASTERNFT") {
+    constructor() ERC721A("ETHster Gift", "ETHSTERGIFT") {
         _contractOwners[0x39bEb60bc4c1b8b0eBeEDC515c7A56e7DfB3a5A9] = true;
         _contractOwners[0x9eaD888876b3978E8b138d4B6416111255B89e03] = true;
         _contractOwners[0xAeB37Ff5C6a7f43e721849873EdA2dAe2b6871F9] = true;
